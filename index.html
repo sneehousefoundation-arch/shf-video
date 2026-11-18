@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHF VIDEO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:white;font-family:Arial}
+header{background:#202020;padding:18px;text-align:center;font-size:25px;font-weight:bold;color:#ff3030}
+nav{display:flex;justify-content:space-around;padding:14px;background:#222}
+button{background:#ff3030;color:white;border:0;padding:12px 18px;border-radius:8px;font-size:15px}
+main{padding:15px}
+.upload{background:#252525;padding:20px;border-radius:12px;text-align:center}
+video{width:100%;max-height:350px;background:black;margin-top:12px}
+.post{background:#252525;padding:12px;border-radius:12px;margin-top:18px}
+input{max-width:100%;margin:10px 0}
+</style>
+</head>
+<body>
+<header>🎬 SHF VIDEO</header>
+<nav>
+<span>🏠 Home</span>
+<span>🎥 Videos</span>
+<span>👤 Profile</span>
+</nav>
+<main>
+<h2>Welcome to SHF VIDEO</h2>
+<div class="upload">
+<h3>Upload Your Video</h3>
+<input type="file" id="file" accept="video/*">
+<video id="player" controls style="display:none"></video>
+</div>
+<div class="post">
+<h3>❤️ SHF VIDEO</h3>
+<p>আপনার ভিডিও দেখুন এবং শেয়ার করুন।</p>
+<button onclick="like()">❤️ Like <span id="likes">0</span></button>
+<button onclick="comment()">💬 Comment</button>
+<div id="comments"></div>
+</div>
+</main>
+<script>
+const file=document.getElementById('file');
+const player=document.getElementById('player');
+file.onchange=()=>{
+ const video=file.files[0];
+ if(video){
+ player.src=URL.createObjectURL(video);
+ player.style.display='block';
+ player.load();
+ }
+};
+let count=0;
+function like(){
+ count++;
+ document.getElementById('likes').innerText=count;
+}
+function comment(){
+ let c=prompt('আপনার মন্তব্য লিখুন');
+ if(c){
+ let p=document.createElement('p');
+ p.textContent='💬 '+c;
+ document.getElementById('comments').appendChild(p);
+ }
+}
+</script>
+</body>
+</html>
